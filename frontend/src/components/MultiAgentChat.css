@@ -1,0 +1,240 @@
+/* ── MultiAgentChat.css ──────────────────────────────────── */
+
+.agent-chat-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Agent info bar */
+.agent-bar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.agent-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1.5px solid transparent;
+  transition: all 0.2s;
+  cursor: default;
+}
+
+.agent-pill.idle {
+  background: var(--surface-2, #f3f4f6);
+  color: var(--text-muted, #6b7280);
+  border-color: var(--border, #e5e7eb);
+}
+
+.agent-pill.active {
+  background: #dbeafe;
+  color: #1d4ed8;
+  border-color: #93c5fd;
+  animation: pulse-badge 1s infinite;
+}
+
+.agent-pill.done {
+  background: #d1fae5;
+  color: #065f46;
+  border-color: #6ee7b7;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Chat window */
+.agent-chat-window {
+  min-height: 360px;
+  max-height: 480px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  scroll-behavior: smooth;
+}
+
+/* Messages */
+.agent-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.agent-message.user {
+  flex-direction: row-reverse;
+}
+
+.agent-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  background: var(--surface-2, #f3f4f6);
+}
+
+.agent-bubble {
+  max-width: 75%;
+  padding: 0.6rem 0.9rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.agent-message.assistant .agent-bubble {
+  background: var(--surface-2, #f3f4f6);
+  border-radius: 0.25rem 1rem 1rem 1rem;
+}
+
+.agent-message.user .agent-bubble {
+  background: var(--primary, #4f46e5);
+  color: #fff;
+  border-radius: 1rem 0.25rem 1rem 1rem;
+}
+
+.agent-bubble p { margin: 0 0 0.35rem; }
+.agent-bubble p:last-child { margin-bottom: 0; }
+
+/* Agents used tag */
+.agents-tag {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.agents-tag span {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #ede9fe;
+  color: #5b21b6;
+  font-weight: 600;
+}
+
+/* Typing dots */
+.typing span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted, #9ca3af);
+  animation: bounce 1.2s infinite;
+  margin: 0 2px;
+}
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+}
+
+/* Quick chips */
+.agent-chips {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.agent-chip {
+  background: var(--surface-2, #f3f4f6);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: var(--text, #111);
+}
+
+.agent-chip:hover {
+  background: var(--primary, #4f46e5);
+  color: #fff;
+  border-color: var(--primary, #4f46e5);
+}
+
+/* Input bar */
+.agent-input-bar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.agent-textarea {
+  flex: 1;
+  resize: none;
+  border: 1.5px solid var(--border, #e5e7eb);
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: var(--surface, #fff);
+  color: var(--text, #111);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.agent-textarea:focus {
+  border-color: var(--primary, #4f46e5);
+}
+
+.agent-send-btn {
+  background: var(--primary, #4f46e5);
+  color: #fff;
+  border: none;
+  border-radius: 0.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.agent-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Mode toggle */
+.mode-toggle {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--text-muted, #6b7280);
+}
+
+.mode-toggle button {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--border, #e5e7eb);
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.78rem;
+  transition: all 0.15s;
+}
+
+.mode-toggle button.active-mode {
+  background: var(--primary, #4f46e5);
+  color: #fff;
+  border-color: var(--primary, #4f46e5);
+}
